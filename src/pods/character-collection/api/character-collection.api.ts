@@ -7,7 +7,7 @@ export const getCharacterCollection = async (): Promise<CharacterEntityApi[]> =>
   return characterCollection;
 };
 
-export const deleteCharacter = async (id: string): Promise<boolean> => {
+export const deleteCharacter = async (id: number): Promise<boolean> => {
   characterCollection = characterCollection.filter((c) => c.id !== id);
   return true;
 };
