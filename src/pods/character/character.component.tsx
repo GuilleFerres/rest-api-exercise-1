@@ -1,49 +1,45 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
-import Button from '@mui/material/Button';
-import {
-  TextFieldComponent,
-  SelectComponent,
-  RatingComponent,
-} from '#common/components';
-import { Lookup } from '#common/models';
-import { formValidation } from './character.validations';
 import { Character } from './character.vm';
 import * as classes from './character.styles';
+import { EpisodeCollectionContainer } from '#pods/episode-collection/episode-collection.container';
+
 
 interface Props {
   character: Character;
-  cities: Lookup[];
-  onSave: (character: Character) => void;
 }
 
 export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
-  const { character, cities, onSave } = props;
+  const { character} = props;
 
   return (
-    <Formik
-      onSubmit={onSave}
-      initialValues={character}
-      enableReinitialize={true}
-      validate={formValidation.validateForm}
-    >
-      {() => (
-        <Form className={classes.root}>
-          <TextFieldComponent name="name" label="Name" />
-          <TextFieldComponent name="address" label="Address" />
-          <RatingComponent name="rating" max={5} />
-          <SelectComponent name="city" label="City" items={cities} />
-          <TextFieldComponent
-            name="description"
-            label="Description"
-            multiline={true}
-            rows={3}
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Save
-          </Button>
-        </Form>
-      )}
-    </Formik>
+    <div className={classes.root}>
+      <div className={classes.characterData}>
+        <section>
+          <img src={character.image} alt={character.name} className={classes.image} />
+        </section>
+        <section>
+          <h1>{character.name}</h1>
+          <p className={classes.dataField}>
+            <span className={classes.field}>Species:</span>
+            {character.species}
+            </p>
+          <p className={classes.dataField}>
+            <span className={classes.field}>Status:</span>
+            {character.status}
+          </p>
+          <p className={classes.dataField}>
+            <span className={classes.field}>Location:</span>
+            {character.location.name}
+          </p>
+        </section>
+      </div>
+
+
+      <p className={classes.dataField}>
+        <span className={classes.field}>Character episodes:</span>
+      </p>
+      <EpisodeCollectionContainer episodeCollection={character.episode} />
+    </div>
   );
 };
+
