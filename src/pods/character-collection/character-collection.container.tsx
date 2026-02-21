@@ -17,8 +17,8 @@ export const CharacterCollectionContainer = () => {
     navigate(linkRoutes.createCharacter);
   };
 
-  const handleEdit = (id: number) => {
-    navigate(linkRoutes.editCharacter(id.toString()));
+  const handleSelect = (id: number) => {
+    navigate(linkRoutes.selectedCharacter(id.toString()));
   };
 
   const handleDelete = async (id: number) => {
@@ -30,7 +30,7 @@ export const CharacterCollectionContainer = () => {
     <CharacterCollectionComponent
       characterCollection={characterCollection}
       onCreateCharacter={handleCreateCharacter}
-      onEdit={handleEdit}
+      onSelect={handleSelect}
       onDelete={handleDelete}
     />
   );
