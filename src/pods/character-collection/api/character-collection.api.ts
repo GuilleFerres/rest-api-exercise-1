@@ -24,6 +24,15 @@ export const getCharacter = async (id: number): Promise<CharacterEntityApi> => {
   return data as CharacterEntityApi;
 }
 
+export const searchCharacters = async (query: string): Promise<CharacterEntityApi[]> => {
+  const { data } = await axios.get(`${url}/?${query}`);
+
+  if (!data || !data.results) {
+    throw new Error('No characters found');
+  }
+  return data.results as CharacterEntityApi[];
+}
+
 export const deleteCharacter = async (id: number): Promise<boolean> => {
   characterCollection = characterCollection.filter((c) => c.id !== id);
   return true;

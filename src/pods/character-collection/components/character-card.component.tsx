@@ -16,16 +16,15 @@ import Button from '@mui/material/Button';
 interface Props {
   character: CharacterEntityVm;
   onSelect: (id: number) => void;
-  onDelete: (id: number) => void;
 }
 
 export const CharacterCard: React.FunctionComponent<Props> = (props) => {
-  const { character, onSelect, onDelete } = props;
+  const { character, onSelect } = props;
 
   return (
     <Card>
       <CardHeader
-        avatar={<Avatar aria-label="Character">{character.image}</Avatar>}
+        avatar={<Avatar aria-label="Character" src={character.image}></Avatar>}
         title={character.name}
         subheader={character.status}
       />
@@ -45,9 +44,6 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
         <Button variant="contained" color="primary" onClick={() => onSelect(character.id)} style={{ cursor: 'pointer' }}>
           View character
         </Button>
-        <IconButton onClick={() => onDelete(character.id)}>
-          <DeleteIcon />
-        </IconButton>
       </CardActions>
     </Card>
   );
