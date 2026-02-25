@@ -18,3 +18,10 @@ export interface CharacterEntityVm {
   url: string;
   created: string;
 }
+
+export interface PaginationInfoVm {
+  count: number;
+  pages: number;
+  next: string | null;
+  prev: string | null;
+}

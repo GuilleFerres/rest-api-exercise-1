@@ -18,3 +18,15 @@ export interface CharacterEntityApi {
   url: string;
   created: string;
 }
+
+export interface PaginationInfo {
+  count: number;
+  pages: number;
+  next: string | null;
+  prev: string | null;
+}
+
+export interface CharacterCollectionResponse {
+  results: CharacterEntityApi[];
+  info: PaginationInfo;
+}
